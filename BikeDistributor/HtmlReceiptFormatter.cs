@@ -14,7 +14,7 @@ namespace BikeDistributor
             builder.AppendFormat("<h1>Order Receipt for {0}</h1>", order.Company);
 
             builder.Append("<ul>");
-            foreach (var item in order.LineItems)
+            foreach (var item in order.OrderItems)
             {
                 builder.AppendFormat("<li>{0} x {1} = {2:C}</li>", item.Quantity, item.Description, item.ItemTotal);
             }

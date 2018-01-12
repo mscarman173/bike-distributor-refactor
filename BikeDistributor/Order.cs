@@ -7,7 +7,7 @@ namespace BikeDistributor
     public class Order
     {
         private const decimal TaxRate = 0.0725m;
-        private readonly IList<Line> _lines = new List<Line>();
+        private readonly IList<OrderItem> _orderItems = new List<OrderItem>();
 
         public Order(string company)
         {
@@ -19,20 +19,20 @@ namespace BikeDistributor
 
         public string Company { get; }
 
-        public void AddLine(Bike bike, int quantity)
+        public void AddItem(Bike bike, int quantity)
         {
-            _lines.Add(CreateLineItem(bike, quantity));
+            _orderItems.Add(CreateLineItem(bike, quantity));
         }
 
-        public IEnumerable<Line> LineItems => _lines;
+        public IEnumerable<OrderItem> OrderItems => _orderItems;
 
-        public decimal SubTotal => _lines.Sum(l => l.ItemTotal);
+        public decimal SubTotal => _orderItems.Sum(l => l.ItemTotal);
 
         public decimal Tax => SubTotal * TaxRate;
 
         public decimal Total => SubTotal + Tax;
 
-        private Line CreateLineItem(Bike bike, int quantity)
+        private OrderItem CreateLineItem(Bike bike, int quantity)
         {
             var price = bike.Price;
 
@@ -49,7 +49,7 @@ namespace BikeDistributor
                 price = price * 0.8m;
             }
 
-            return new Line(quantity, price, bike.Description);
+            return new OrderItem(quantity, price, bike.Description);
         }
     }
 }

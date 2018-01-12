@@ -3,17 +3,13 @@
 namespace BikeDistributor.Test
 {
     [TestClass]
-    public class OrderTest
+    public class OrderFormattingTest
     {
-        private static readonly Bike Defy = new Bike("Giant", "Defy 1", Bike.OneThousand);
-        private static readonly Bike Elite = new Bike("Specialized", "Venge Elite", Bike.TwoThousand);
-        private static readonly Bike DuraAce = new Bike("Specialized", "S-Works Venge Dura-Ace", Bike.FiveThousand);
-
         [TestMethod]
         public void ReceiptOneDefy()
         {
             var order = new Order("Anywhere Bike Shop");
-            order.AddLine(Defy, 1);
+            order.AddItem(Products.Defy, 1);
 
             var output = new PlainTextReceiptFormatter().Format(order);
 
@@ -31,7 +27,7 @@ Total: $1,072.50";
         public void ReceiptOneElite()
         {
             var order = new Order("Anywhere Bike Shop");
-            order.AddLine(Elite, 1);
+            order.AddItem(Products.Elite, 1);
 
             var output = new PlainTextReceiptFormatter().Format(order);
 
@@ -48,7 +44,7 @@ Total: $2,145.00";
         public void ReceiptOneDuraAce()
         {
             var order = new Order("Anywhere Bike Shop");
-            order.AddLine(DuraAce, 1);
+            order.AddItem(Products.DuraAce, 1);
 
             var output = new PlainTextReceiptFormatter().Format(order);
 
@@ -65,7 +61,7 @@ Total: $5,362.50";
         public void HtmlReceiptOneDefy()
         {
             var order = new Order("Anywhere Bike Shop");
-            order.AddLine(Defy, 1);
+            order.AddItem(Products.Defy, 1);
 
             var output = new HtmlReceiptFormatter().Format(order);
 
@@ -78,7 +74,7 @@ Total: $5,362.50";
         public void HtmlReceiptOneElite()
         {
             var order = new Order("Anywhere Bike Shop");
-            order.AddLine(Elite, 1);
+            order.AddItem(Products.Elite, 1);
 
             var output = new HtmlReceiptFormatter().Format(order);
 
@@ -91,7 +87,7 @@ Total: $5,362.50";
         public void HtmlReceiptOneDuraAce()
         {
             var order = new Order("Anywhere Bike Shop");
-            order.AddLine(DuraAce, 1);
+            order.AddItem(Products.DuraAce, 1);
 
             var output = new HtmlReceiptFormatter().Format(order);
 

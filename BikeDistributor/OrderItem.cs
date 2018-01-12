@@ -2,9 +2,9 @@
 
 namespace BikeDistributor
 {
-    public class Line
+    public class OrderItem
     {
-        public Line(int quantity, decimal price, string description)
+        public OrderItem(int quantity, decimal price, string description)
         {
             if (string.IsNullOrWhiteSpace(description))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(description));
