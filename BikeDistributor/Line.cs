@@ -4,20 +4,21 @@ namespace BikeDistributor
 {
     public class Line
     {
-        private readonly Bike _bike;
-
-        public Line(Bike bike, int quantity, decimal price)
+        public Line(int quantity, decimal price, string description)
         {
-            _bike = bike ?? throw new ArgumentNullException(nameof(bike));
+            if (string.IsNullOrWhiteSpace(description))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(description));
+
             Quantity = quantity;
             Price = price;
+            Description = description;
         }
 
         public int Quantity { get; }
 
         public decimal Price { get; }
 
-        public string Description => $"{_bike.Brand} {_bike.Model}";
+        public string Description { get; }
 
         public decimal ItemTotal => Quantity * Price;
     }

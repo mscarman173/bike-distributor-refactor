@@ -49,7 +49,7 @@ namespace BikeDistributor
                 price = price * 0.8m;
             }
 
-            return new Line(bike, quantity, price);
+            return new Line(quantity, price, bike.Description);
         }
     }
 }
