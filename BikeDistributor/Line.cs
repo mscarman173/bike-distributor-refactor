@@ -1,14 +1,24 @@
-﻿namespace BikeDistributor
+﻿using System;
+
+namespace BikeDistributor
 {
     public class Line
     {
-        public Line(Bike bike, int quantity)
+        private readonly Bike _bike;
+
+        public Line(Bike bike, int quantity, decimal price)
         {
-            Bike = bike;
+            _bike = bike ?? throw new ArgumentNullException(nameof(bike));
             Quantity = quantity;
+            Price = price;
         }
 
-        public Bike Bike { get; private set; }
-        public int Quantity { get; private set; }
+        public int Quantity { get; }
+
+        public decimal Price { get; }
+
+        public string Description => $"{_bike.Brand} {_bike.Model}";
+
+        public decimal ItemTotal => Quantity * Price;
     }
 }
